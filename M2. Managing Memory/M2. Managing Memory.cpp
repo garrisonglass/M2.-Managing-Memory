@@ -12,7 +12,7 @@ struct Student
 {
     string lastName;
     int    studentID;
-    double scores;
+    double* scores;
     double average;
     char   grade;
 };
@@ -22,64 +22,57 @@ struct Student
 //const int NUM_TEST_SCORES = 5;
 
 // Functions
-int  ReadData(string names[], double scores[][NUM_TEST_SCORES]);
-double GetAvg(const double scores[], int size);
+//int  ReadData(string names[], double scores[][NUM_TEST_SCORES]);
+double GetAvg(const double scores[], int numTests);
 char GetLetterGrade(double average);
 void printReport(const Student student[], int count);
 
+// Reads data from file and returns number of students read
 int main()
 {
-    string names[MAX_CLASS_SIZE];
-    double scores[MAX_CLASS_SIZE][NUM_TEST_SCORES];
-    double averages[MAX_CLASS_SIZE];
-    char   grades[MAX_CLASS_SIZE];
-
-    int studentCount = ReadData(names, scores);
-
-    for (int i = 0; i < studentCount; i++)
-    {
-        averages[i] = GetAvg(scores[i], NUM_TEST_SCORES);
-        grades[i] = GetLetterGrade(averages[i]);
-    }
-    printReport(names, averages, grades, studentCount);
-
-    return 0;
-}
-
-// Reads data from file and returns number of students read
-int ReadData(string names[], double scores[][NUM_TEST_SCORES])
-{
-    ifstream inFile("StudentGrades.txt");
+    ifstream inFile("student_data.txt");
     if (!inFile)
     {
         cout << "Error opening file!" << endl;
         return 0;
     }
 
-    int count = 0;
-    while (count < MAX_CLASS_SIZE && inFile >> names[count])
-    {
-        for (int i = 0; i < NUM_TEST_SCORES; i++)
+    int numStudents, numTests;
+    inFile >> numStudents >> numTests;
+
+    Student* students = new Student[numStudents];
+   
+    for (int i = 0; i < numStudents; i++)
         {
-            inFile >> scores[count][i];
+            inFile >> students[i].lastName;
+            inFile >> students[i].studentID;
+
+            students[i].scores = new double[numTests];
+
+            for (int i = 0; i < numTests; i++)
+            {
+                inFile >> students[i].scores[t];
+            }
+            students[i].average = GetAvg(students[i].scores, numTests);
+            students[i].grade   = GetLetterGrade(students[i].average);
         }
-        count++;
-    }
+           
+        inFile.close();
 
-    inFile.close();
+        printReport(students, numStudents);
 
-    return count;
+    return 0;
 }
 
 // Calculates the average score for a student
-double GetAvg(const double scores[], int size)
+double GetAvg(const double scores[], int numTests)
 {
     double sum = 0;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < numTests; i++)
     {
         sum += scores[i];
     }
-    return sum / size;
+    return sum / numTests;
 }
 
 // Assigns letter grade based on the students average
@@ -93,7 +86,7 @@ char GetLetterGrade(double average)
 }
 
 // Prints formatted grade report
-void printReport(const string names[], const double averages[], const char grades[], int count)
+void printReport(const Student students[], int count)
 {
     cout << left
         << setw(12) << "Names"
@@ -107,9 +100,9 @@ void printReport(const string names[], const double averages[], const char grade
     for (int i = 0; i < count; i++)
     {
         cout << left
-            << setw(12) << student[i].lastNames
-            << setw(11) << fixed << setprecision(2) << student[i].average
-            << setw(10) << student[i].grade
+            << setw(12) << students[i].lastName
+            << setw(11) << fixed << setprecision(2) << students[i].average
+            << setw(10) << students[i].grade
             << endl;
     }
 }
