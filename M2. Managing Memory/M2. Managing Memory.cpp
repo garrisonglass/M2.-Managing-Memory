@@ -8,6 +8,15 @@
 
 using namespace std;
 
+struct Student
+{
+    string lastName;
+    int    studentID;
+    double scores;
+    double average;
+    char   grade;
+};
+
 // Constants
 const int MAX_CLASS_SIZE = 150;
 const int NUM_TEST_SCORES = 5;
