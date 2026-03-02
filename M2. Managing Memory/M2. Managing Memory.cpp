@@ -18,14 +18,14 @@ struct Student
 };
 
 // Constants
-const int MAX_CLASS_SIZE = 150;
-const int NUM_TEST_SCORES = 5;
+//const int MAX_CLASS_SIZE = 150;
+//const int NUM_TEST_SCORES = 5;
 
 // Functions
 int  ReadData(string names[], double scores[][NUM_TEST_SCORES]);
 double GetAvg(const double scores[], int size);
 char GetLetterGrade(double average);
-void printReport(const string names[], const double averages[], const char grades[], int count);
+void printReport(const Student student[], int count);
 
 int main()
 {
@@ -97,6 +97,7 @@ void printReport(const string names[], const double averages[], const char grade
 {
     cout << left
         << setw(12) << "Names"
+        << setw(12) << "ID"
         << setw(11) << "Averages"
         << setw(10) << "Grades"
         << endl;
@@ -106,9 +107,9 @@ void printReport(const string names[], const double averages[], const char grade
     for (int i = 0; i < count; i++)
     {
         cout << left
-            << setw(12) << names[i]
-            << setw(11) << fixed << setprecision(2) << averages[i]
-            << setw(10) << grades[i]
+            << setw(12) << student[i].lastNames
+            << setw(11) << fixed << setprecision(2) << student[i].average
+            << setw(10) << student[i].grade
             << endl;
     }
 }
