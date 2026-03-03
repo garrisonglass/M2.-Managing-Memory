@@ -35,9 +35,21 @@ int main()
 	print(reversed, SIZE);
 
 	delete[] reversed;//Clean-up *dynamically allocated memory* Auto suggested comment
+
+	return 0;
 }
 
-void print(cont = st int arr[], int size) 
+int* ReverseArray(const int arr[], int size)
+{
+	int* rev = new int[size]; // Dynamically allocate memory for the reversed array
+
+	for (int i = 0; i < size; i++)
+	{
+		rev[i] = arr[size - 1 - i]; // Fill the reversed array
+	}
+	return rev; // Return the pointer to the reversed array
+}
+void print(const int arr[], int size)
 {
 	for (int i = 0; i < size; i++) 
 	{
