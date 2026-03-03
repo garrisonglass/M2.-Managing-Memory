@@ -49,7 +49,7 @@ int main()
 
             students[i].scores = new double[numTests];
 
-            for (int i = 0; i < numTests; i++)
+            for (int t = 0; t < numTests; t++)
             {
                 inFile >> students[i].scores[t];
             }
@@ -60,6 +60,11 @@ int main()
         inFile.close();
 
         printReport(students, numStudents);
+
+        for (int i = 0; i < numStudents; i++)
+            delete[] students[i].scores;
+
+        delete[] students;
 
     return 0;
 }
