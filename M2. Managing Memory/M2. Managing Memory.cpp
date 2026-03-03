@@ -17,12 +17,9 @@ struct Student
     char   grade;
 };
 
-// Constants
-//const int MAX_CLASS_SIZE = 150;
-//const int NUM_TEST_SCORES = 5;
 
 // Functions
-//int  ReadData(string names[], double scores[][NUM_TEST_SCORES]);
+
 double GetAvg(const double scores[], int numTests);
 char GetLetterGrade(double average);
 void printReport(const Student student[], int count);
