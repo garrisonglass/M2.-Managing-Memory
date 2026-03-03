@@ -3,9 +3,34 @@
 #include <iostream>
 
 using namespace std;
+/*
+	Function:       ReverseArray
 
+	Purpose:        Dynamically allocates a new array and fills it
+			        with the contents of the original array in
+			        reverse order.
+
+	Input:          arr[] - the original array (read-only)
+			        size  - number of elements in arr
+	
+	Preconditions:  size > 0, arr contains valid integers
+	
+	Postconditions: Returns a pointer to a new dynamically
+					allocated array. Caller is responsible
+					for deleting this memory using delete[].
+*/
 int* ReverseArray(const int arr[], int size);
+/*
+	Function:       print
 
+	Purpose:        Displays the contents of an integer array.
+
+	Input:          arr[] - array to print
+			        size  - number of elements
+
+	Preconditions:  size >= 0
+	Postconditions: None (output only)
+*/
 void print(const int arr[], int size);
 
 int main()
@@ -41,14 +66,15 @@ int main()
 
 int* ReverseArray(const int arr[], int size)
 {
-	int* rev = new int[size]; // Dynamically allocate memory for the reversed array
+	int* rev = new int[size];//Dynamically allocate memory for the reversed array
 
 	for (int i = 0; i < size; i++)
 	{
-		rev[i] = arr[size - 1 - i]; // Fill the reversed array
+		rev[i] = arr[size - 1 - i];//Fill the reversed array. I used the [size-1-i] from a previous project
 	}
-	return rev; // Return the pointer to the reversed array
+	return rev;//Returns the pointer to the reversed array
 }
+
 void print(const int arr[], int size)
 {
 	for (int i = 0; i < size; i++) 
