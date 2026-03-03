@@ -103,6 +103,7 @@ void printReport(const Student students[], int count)
     {
         cout << left
             << setw(12) << students[i].lastName
+            << setw(12) << students[i].studentID
             << setw(11) << fixed << setprecision(2) << students[i].average
             << setw(10) << students[i].grade
             << endl;
