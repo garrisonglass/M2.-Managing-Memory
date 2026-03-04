@@ -24,7 +24,12 @@ double GetAvg(const double scores[], int numTests);
 char GetLetterGrade(double average);
 void printReport(const Student student[], int count);
 
-// Reads data from file and returns number of students read
+//Opens file, reads the number of students and tests, and creates a dynamically sized array of Student records.
+//For each student, main reads identifying information and test scores, allocates a dynamic array to store those scores. 
+//Then omputes both the average and letter grade using functions.
+//After all student data is processed, main prints a formatted grade report. 
+//Then releases all dynamically allocated memory before ending.
+
 int main()
 {
     ifstream inFile("student_data.txt");
@@ -66,7 +71,7 @@ int main()
     return 0;
 }
 
-// Calculates the average score for a student
+//Calculates the average score for a student
 double GetAvg(const double scores[], int numTests)
 {
     double sum = 0;
@@ -77,7 +82,7 @@ double GetAvg(const double scores[], int numTests)
     return sum / numTests;
 }
 
-// Assigns letter grade based on the students average
+//Assigns letter grade based on the students average
 char GetLetterGrade(double average)
 {
     if (average >= 90) return 'A';
@@ -87,7 +92,7 @@ char GetLetterGrade(double average)
     else                    return 'F';
 }
 
-// Prints formatted grade report
+//Prints formatted grade report
 void printReport(const Student students[], int count)
 {
     cout << left
