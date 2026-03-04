@@ -1,5 +1,4 @@
-// M2. Managing Memory.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// M2. Managing Memory.cpp : Course-Grades
 
 #include <iostream>
 #include <string>
